@@ -22,7 +22,7 @@ namespace WL.TestAuto
         //TEST-172
         public void myMehtod()
         {
-            Console.WriteLine("HEllo testing");
+            
         }
        
 
