@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WL.TestAuto
 {
-    class SinGenerator
+    public static class SinGenerator
     {
         /// <summary>
         /// Generates a valid 9-digit SIN.
@@ -64,7 +64,7 @@ namespace WL.TestAuto
         }
     }
 
-    public class Utilities
+    public static class Utilities
     {
         //  Get Time Stamp
         // String timeStamp = GetTimestamp(DateTime.Now);
@@ -102,4 +102,5 @@ namespace WL.TestAuto
         }
 
     }
+    
 }
