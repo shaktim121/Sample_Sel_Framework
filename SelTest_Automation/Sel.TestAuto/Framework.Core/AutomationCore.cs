@@ -50,7 +50,7 @@ namespace Sel.TestAuto
             #region Report Initialize
             extent = new ExtentReports();
             htmlReporter = new ExtentV3HtmlReporter(reportPath);
-            htmlReporter.LoadConfig(projectDirectory + "\\" + @"Extent-Config.xml");
+            //htmlReporter.LoadConfig(projectDirectory + "\\" + @"Extent-Config.xml");
             htmlReporter.Config.DocumentTitle = "Worklinks Automation - " + "TestName".AppSettings() + " Report";
             htmlReporter.Config.ReportName = "TestName".AppSettings();
 

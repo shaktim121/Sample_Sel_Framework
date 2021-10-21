@@ -322,8 +322,8 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -531,9 +531,9 @@
     <Compile Include="Framework.Core\GenericMethods.cs" />
     <Compile Include="Framework.Core\GlobalDB.cs" />
     <Compile Include="Framework.Core\Utilities.cs" />
-    <Compile Include="Repository_POM\LandingPage.cs" />
-    <Compile Include="Repository_POM\LogInPage.cs" />
-    <Compile Include="Repository_POM\NotificationsPage.cs" />
+    <Compile Include="Repository_POM\Sample\LandingPage.cs" />
+    <Compile Include="Repository_POM\Sample\LogInPage.cs" />
+    <Compile Include="Repository_POM\Sample\NotificationsPage.cs" />
     <Compile Include="Repository_POM\Pages.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite1.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite_Ref.cs" />
