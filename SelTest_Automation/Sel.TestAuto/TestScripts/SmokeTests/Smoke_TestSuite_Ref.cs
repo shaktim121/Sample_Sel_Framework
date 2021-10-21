@@ -11,10 +11,10 @@ using AventStack.ExtentReports.Reporter;
 using System.Data;
 using Bogus.Extensions.Canada;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     [TestClass]
-    public class Smoke_TestSuite : AutomationCore
+    public class Smoke_TestSuite_Ref : AutomationCore
     {
         public string xmlDataFile = projectDirectory + "\\TestScripts\\PayrollTests\\ProcessGroupDetails.xml";
         

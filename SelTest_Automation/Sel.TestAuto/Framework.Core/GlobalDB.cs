@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     public static class GlobalDB
     {

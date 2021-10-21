@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Sel.TestAuto
 {
@@ -129,6 +131,15 @@ namespace Sel.TestAuto
             return content;
         }
 
+        /// <summary>
+        /// Function to Send a API call and get response based on API type and method
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="baseUrl"></param>
+        /// <param name="input"></param>
+        /// <param name="apiType"></param>
+        /// <param name="defaultHeaderKeyValue">Optional Parameter: To be entered in Key Value pair set. Ex: Key1:Val1;Key2:val2;..</param>
+        /// <returns></returns>
         public static string API_SendReceive(string method, string baseUrl, string input, string apiType, string defaultHeaderKeyValue = null)
         {
             try
@@ -177,7 +188,131 @@ namespace Sel.TestAuto
             return statusCode;
         }
 
+        public static bool ResponseFileValidation(string filePath, string expectedVals, bool checkExist = true)
+        {
+            bool flag = false;
+            int cntrp = 0;
+            int cntrnp = 0;
+            string[] strVal = expectedVals.Split(';');
+            StreamReader read = new StreamReader(filePath, Encoding.UTF8);
+            string replyMsg = read.ReadToEnd().Replace(Environment.NewLine, " ").Replace("\t", "");
+            try
+            {
+                foreach (string exp in strVal)
+                {
+                    if (replyMsg.Contains(exp))
+                    {
+                        
+                        cntrp++;
+                    }
+                    else
+                    {
+                        
+                        cntrnp++;
+                    }
+                }
 
+                if (!checkExist)
+                {
+                    if (cntrnp == strVal.Length)
+                    {
+                        flag = true;
+                        
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                else if (cntrp == strVal.Length)
+                {
+                    flag = true;
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " " + ex.StackTrace);
+            }
+            return flag;
+        }
+
+        public static bool ResponseValidation(string responseString, string expectedVals, bool checkExist = true)
+        {
+            bool flag = false;
+            int cntrp = 0;
+            int cntrnp = 0;
+            string[] strVal = expectedVals.Split(';');
+            string replyMsg = responseString;
+            try
+            {
+                foreach (string exp in strVal)
+                {
+                    if (replyMsg.Contains(exp))
+                    {
+                        
+                        cntrp++;
+                    }
+                    else
+                    {
+                        
+                        cntrnp++;
+                    }
+                }
+
+                if (!checkExist)
+                {
+                    if (cntrnp == strVal.Length)
+                    {
+                        flag = true;
+                        
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                else if (cntrp == strVal.Length)
+                {
+                    flag = true;
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " " + ex.StackTrace);
+            }
+            return flag;
+        }
+
+        public static string GetXMLTagValue(string xmlfilePath, string tagName)
+        {
+            string tagVal = string.Empty;
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlfilePath);
+
+                XmlNodeList nodeList = xmlDoc.GetElementsByTagName(tagName);
+                if (nodeList.Count != 0)
+                {
+                    tagVal = nodeList[0].InnerText;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " " + ex.StackTrace);
+            }
+            return tagVal;
+        }
 
 
 

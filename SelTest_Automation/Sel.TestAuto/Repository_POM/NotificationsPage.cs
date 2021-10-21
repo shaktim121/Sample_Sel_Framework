@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     public class NotificationsPage : AutomationCore
     {
