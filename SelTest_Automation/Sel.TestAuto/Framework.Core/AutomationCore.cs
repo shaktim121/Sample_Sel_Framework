@@ -48,9 +48,9 @@ namespace WL.TestAuto
         public static void StartClass(TestContext context)
         {
             #region Report Initialize
-            extent = new ExtentReports();
+            extent = new AventStack.ExtentReports.ExtentReports();
             htmlReporter = new ExtentV3HtmlReporter(reportPath);
-            //htmlReporter.LoadConfig(projectDirectory + "\\" + @"Extent-Config.xml");
+            htmlReporter.LoadConfig(projectDirectory + "\\" + @"Extent-Config.xml");
             htmlReporter.Config.DocumentTitle = "Worklinks Automation - " + "TestName".AppSettings() + " Report";
             htmlReporter.Config.ReportName = "TestName".AppSettings();
 
@@ -79,18 +79,18 @@ namespace WL.TestAuto
             try
             {
                 //Get all test data from DB
-                data = testName.LoadTestData();
+               // data = testName.LoadTestData();
 
                 //Initiate App Launch
                 Browsers.Init(browser, baseURL);
 
                 //LogIn to Application
-                Pages.LogIn.Fn_LogInToApplication(user, pwd);
+              //  Pages.LogIn.Fn_LogInToApplication(user, pwd);
             }
             catch (Exception ex)
             {
                 test.Error("Failed to Launch/Login to Application or Browser with Exception: " + ex.StackTrace + " and Message: " + ex.Message);
-                //GenericMethods.CaptureScreenshot();
+                GenericMethods.CaptureScreenshot();
                 throw new Exception("Exception: " + ex.StackTrace + " and Message: " + ex.Message);
             }
         }
@@ -101,7 +101,7 @@ namespace WL.TestAuto
             //LogOut of Application
             try
             {
-                Pages.LogIn.Fn_LogOutOfApplication();
+               // Pages.LogIn.Fn_LogOutOfApplication();
             }
             catch(Exception ex)
             {
@@ -110,7 +110,7 @@ namespace WL.TestAuto
             finally
             {
                 Thread.Sleep(3000);
-                Browsers.Close();
+               Browsers.Close();
                 extent.Flush();
                 Thread.Sleep(3000);
             }
