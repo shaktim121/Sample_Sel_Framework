@@ -507,6 +507,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework.Core\API.cs" />
     <Compile Include="Framework.Core\AutomationCore.cs" />
     <Compile Include="Framework.Core\Browsers.cs" />
     <Compile Include="Framework.Core\GenericMethods.cs" />

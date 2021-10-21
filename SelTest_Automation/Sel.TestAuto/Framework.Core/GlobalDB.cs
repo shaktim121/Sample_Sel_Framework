@@ -259,12 +259,20 @@ namespace WL.TestAuto
         }
 
         //Function to fetch individual test data value from a dataSet
-        public static string GetTestData(this DataSet ds, string key)
+        public static string GetTestData(this DataSet ds, string key, int Row=0)
         {
-            string sval;
+            string sval = string.Empty;
+            var cols = ds.Tables[0].Columns;
             try
             {
-                sval = Convert.ToString(ds.Tables[0].Rows[0][key]);
+                foreach(DataColumn col in cols)
+                {
+                    if(col.ColumnName.Trim().Equals(key.Trim()))
+                    {
+                        sval = Convert.ToString(ds.Tables[0].Rows[Row][col.ColumnName]);
+                        break;
+                    }
+                }
             }
             catch (Exception ex)
             {
