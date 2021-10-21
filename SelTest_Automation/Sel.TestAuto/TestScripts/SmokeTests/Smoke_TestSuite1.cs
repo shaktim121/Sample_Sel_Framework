@@ -11,7 +11,7 @@ using AventStack.ExtentReports.Reporter;
 using System.Data;
 using Bogus.Extensions.Canada;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     [TestClass]
     public class Smoke_TestSuite1 : AutomationCore
@@ -19,7 +19,6 @@ namespace WL.TestAuto
         public string xmlDataFile = projectDirectory + "\\TestScripts\\PayrollTests\\ProcessGroupDetails.xml";
 
         [TestMethod]
-        //TEST-172
         public void myMehtod()
         {
             

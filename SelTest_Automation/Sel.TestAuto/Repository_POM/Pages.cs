@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     public static class Pages
     {

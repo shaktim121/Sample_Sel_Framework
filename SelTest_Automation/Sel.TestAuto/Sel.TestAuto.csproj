@@ -525,6 +525,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework.Core\API.cs" />
     <Compile Include="Framework.Core\AutomationCore.cs" />
     <Compile Include="Framework.Core\Browsers.cs" />
     <Compile Include="Framework.Core\GenericMethods.cs" />
@@ -535,7 +536,7 @@
     <Compile Include="Repository_POM\NotificationsPage.cs" />
     <Compile Include="Repository_POM\Pages.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite1.cs" />
-    <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite.cs" />
+    <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite_Ref.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

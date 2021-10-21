@@ -12,7 +12,7 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     public static class Browsers
     {
@@ -26,9 +26,8 @@ namespace WL.TestAuto
             {
                 case "chrome":
                     Utilities.Kill_Process("chromedriver");
-                    //GetDriver = new ChromeDriver();
                     String chromeVersion = new ChromeConfig().GetMatchingBrowserVersion();
-                     new DriverManager().SetUpDriver(new ChromeConfig(),chromeVersion);
+                    new DriverManager().SetUpDriver(new ChromeConfig(),chromeVersion);
                     GetDriver = new ChromeDriver();
                         
                     break;

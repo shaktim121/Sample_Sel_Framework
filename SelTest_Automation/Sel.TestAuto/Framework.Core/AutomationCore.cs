@@ -12,7 +12,7 @@ using AventStack.ExtentReports.Reporter;
 using System.Data;
 using System.Runtime.Remoting.Messaging;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     [TestClass]
     public class AutomationCore
@@ -48,7 +48,7 @@ namespace WL.TestAuto
         public static void StartClass(TestContext context)
         {
             #region Report Initialize
-            extent = new AventStack.ExtentReports.ExtentReports();
+            extent = new ExtentReports();
             htmlReporter = new ExtentV3HtmlReporter(reportPath);
             htmlReporter.LoadConfig(projectDirectory + "\\" + @"Extent-Config.xml");
             htmlReporter.Config.DocumentTitle = "Worklinks Automation - " + "TestName".AppSettings() + " Report";
@@ -79,13 +79,13 @@ namespace WL.TestAuto
             try
             {
                 //Get all test data from DB
-               // data = testName.LoadTestData();
+                //data = testName.LoadTestData();
 
                 //Initiate App Launch
                 Browsers.Init(browser, baseURL);
 
                 //LogIn to Application
-              //  Pages.LogIn.Fn_LogInToApplication(user, pwd);
+                //Pages.LogIn.Fn_LogInToApplication(user, pwd);
             }
             catch (Exception ex)
             {
@@ -110,7 +110,7 @@ namespace WL.TestAuto
             finally
             {
                 Thread.Sleep(3000);
-               Browsers.Close();
+                Browsers.Close();
                 extent.Flush();
                 Thread.Sleep(3000);
             }

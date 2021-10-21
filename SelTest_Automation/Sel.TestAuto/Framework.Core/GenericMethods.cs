@@ -38,7 +38,7 @@ using OpenQA.Selenium.Interactions;
 using System.Data;
 using System.Data.OleDb;
 
-namespace WL.TestAuto
+namespace Sel.TestAuto
 {
     public static class GenericMethods
     {
