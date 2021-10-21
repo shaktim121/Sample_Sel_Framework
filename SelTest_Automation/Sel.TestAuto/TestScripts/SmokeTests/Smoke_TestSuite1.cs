@@ -16,12 +16,11 @@ namespace Sel.TestAuto
     [TestClass]
     public class Smoke_TestSuite1 : AutomationCore
     {
-        public string xmlDataFile = projectDirectory + "\\TestScripts\\PayrollTests\\ProcessGroupDetails.xml";
 
         [TestMethod]
-        public void myMehtod()
+        public void Test001_Test_Mehtod()
         {
-            
+            //Launch and Close Google
         }
        
 
