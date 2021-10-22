@@ -536,6 +536,7 @@
     <Compile Include="Framework.Core\Browsers.cs" />
     <Compile Include="Framework.Core\GenericMethods.cs" />
     <Compile Include="Framework.Core\GlobalDB.cs" />
+    <Compile Include="Framework.Core\MobileUtilities.cs" />
     <Compile Include="Framework.Core\Utilities.cs" />
     <Compile Include="Repository_POM\Sample\LandingPage.cs" />
     <Compile Include="Repository_POM\Sample\LogInPage.cs" />
