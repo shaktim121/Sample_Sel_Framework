@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Data.OleDb;
 
 namespace Sel.TestAuto
 {
@@ -281,7 +283,76 @@ namespace Sel.TestAuto
             return sval;
         }
 
+        /// <summary>
+        /// Set Data back to Excel with Excel Path, Sheet and Column Name (Only sets in the first row)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="sheetName"></param>
+        /// <param name="colName"></param>
+        /// <param name="cellVal"></param>
+        public static void SetExcelData(string path, string sheetName, string colName, string cellVal)
+        {
+            var connString = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Extended Properties='Excel 8.0;ReadOnly=False;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text'";
+            if (Path.GetExtension(path).ToLower() == ".xlsx")
+            {
+                connString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={path};Extended Properties='Excel 12.0'";
+            }
 
+            try
+            {
+                using (var conn = new OleDbConnection(connString))
+                {
+                    conn.Open();
+                    var sheets = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "UPDATE [" + sheetName + "$] SET " + colName + " = '" + cellVal + "';";
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " " + ex.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// Load Excel Data with Path and Sheet Name in DataSet format
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="sheetName"></param>
+        /// <returns></returns>
+        public static DataSet LoadExcelData(string path, string sheetName)
+        {
+            var ds = new DataSet();
+
+            var connString = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Extended Properties='Excel 8.0;ReadOnly=False;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text'";
+            if (Path.GetExtension(path).ToLower() == ".xlsx")
+            {
+                connString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={path};Extended Properties='Excel 12.0'";
+            }
+
+            try
+            {
+                using (var conn = new OleDbConnection(connString))
+                {
+                    conn.Open();
+                    var sheets = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "Select * from [" + sheetName + "$];";
+                        var adapter = new OleDbDataAdapter(cmd);
+                        adapter.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " " + ex.StackTrace);
+            }
+            return ds;
+        }
 
 
     }
