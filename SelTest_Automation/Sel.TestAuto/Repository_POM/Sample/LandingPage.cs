@@ -93,7 +93,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -110,7 +110,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -129,11 +129,11 @@ namespace Sel.TestAuto
                 }
                 if(flag)
                 {
-                    test.Pass("User Language changed to :" + language);
+                    Report.Pass("User Language changed to :" + language);
                 }
                 else
                 {
-                    test.Fail("Unable to change Language to : " + language);
+                    Report.Fail("Unable to change Language to : " + language);
                 }
                 //if(Link_Language.Exists(10))
                 //{
@@ -145,25 +145,25 @@ namespace Sel.TestAuto
                 //    if(!language.Equals(lng))
                 //    {
                 //        Link_Language.Click();
-                //        test.Pass("User Language changed to :" + language);
+                //        Report.Pass("User Language changed to :" + language);
                 //        flag = true;
                 //    }
                 //    else
                 //    {
-                //        test.Pass("User Language already in :" + language);
+                //        Report.Pass("User Language already in :" + language);
                 //        flag = true;
                 //    }
                 //}
                 //else
                 //{
-                //    test.Fail("Unable to change Language");
+                //    Report.Fail("Unable to change Language");
                 //    flag = false;
                 //}
                 
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -179,17 +179,17 @@ namespace Sel.TestAuto
                 flag = Drpdwn_UserGroup.SelectValueFromDropDown(Option);
                 if (flag)
                 {
-                    test.Pass("User Type selected : " + Option);
+                    Report.Pass("User Type selected : " + Option);
                 }
                 else
                 {
-                    test.Fail("Failed to select User Type: " + Option);
+                    Report.Fail("Failed to select User Type: " + Option);
                     throw new Exception();
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -219,13 +219,13 @@ namespace Sel.TestAuto
                 }
                 else
                 {
-                    test.Fail("Unabe to find 'Home' Menu");
+                    Report.Fail("Unabe to find 'Home' Menu");
                     flag = false;
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 EndTest();
                 //throw new Exception(ex.Message);
             }
@@ -259,13 +259,13 @@ namespace Sel.TestAuto
                                 {
                                     rows[i].FindElements(By.TagName("td"))[colNum].Highlight();
                                     valCount++;
-                                    test.Pass("Value : " + colVal + " found in Column : " + columnName);
+                                    Report.Pass("Value : " + colVal + " found in Column : " + columnName);
                                     break;
                                 }
                             }
                             if (valCount == 0)
                             {
-                                test.Fail("Value : " + colVal + " Not found in Column : " + columnName);
+                                Report.Fail("Value : " + colVal + " Not found in Column : " + columnName);
                                 flag = false;
                             }
                             else
@@ -276,30 +276,30 @@ namespace Sel.TestAuto
 
                         if (finalCount == colVals.Length)
                         {
-                            test.Pass("All records found in Column : " + columnName);
+                            Report.Pass("All records found in Column : " + columnName);
                             flag = true;
                         }
                         else
                         {
-                            test.Fail("Few or all of the records are missing in Column : " + columnName);
+                            Report.Fail("Few or all of the records are missing in Column : " + columnName);
                             flag = false;
                         }
                     }
                     else
                     {
-                        test.Fail("No rows present in table");
+                        Report.Fail("No rows present in table");
                         flag = false;
                     }
                 }
                 else
                 {
-                    test.Fail("Required table does not Exist");
+                    Report.Fail("Required table does not Exist");
                     flag = false;
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -322,20 +322,20 @@ namespace Sel.TestAuto
                 }
 
                 ds = GlobalDB.ExecuteStoredProc(storedProc, spParams, connection);
-                test.Info("Stored Procedure : " + storedProc);
-                test.Info("SP Parameters : " + spParams);
-                test.Info("Connection parameters: " + connection);
+                Report.Info("Stored Procedure : " + storedProc);
+                Report.Info("SP Parameters : " + spParams);
+                Report.Info("Connection parameters: " + connection);
 
                 if (dataToVerify.ToLower().Contains("data exists"))
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        test.Pass("Data Exists in the Report and is not empty");
+                        Report.Pass("Data Exists in the Report and is not empty");
                         flag = true;
                     }
                     else
                     {
-                        test.Fail("No data present or Report is empty");
+                        Report.Fail("No data present or Report is empty");
                     }
                 }
                 else
@@ -359,19 +359,19 @@ namespace Sel.TestAuto
                                     int a = (int)Convert.ToDouble(aval);
                                     if (!a.Equals(0))
                                     {
-                                        test.Pass("column : " + dt.Split(':')[0] + " has Non Zero value in the report DB");
+                                        Report.Pass("column : " + dt.Split(':')[0] + " has Non Zero value in the report DB");
                                         break;
                                     }
                                     else
                                     {
-                                        test.Fail("column: " + dt.Split(':')[0] + " has Zero value in the report DB");
+                                        Report.Fail("column: " + dt.Split(':')[0] + " has Zero value in the report DB");
                                         flag = false;
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    test.Fail("column: " + dt.Split(':')[0] + " has Zero value in the report DB");
+                                    Report.Fail("column: " + dt.Split(':')[0] + " has Zero value in the report DB");
                                     flag = false;
                                     break;
                                 }
@@ -380,13 +380,13 @@ namespace Sel.TestAuto
 
                             else if (aval.Contains(eval))
                             {
-                                test.Pass(eval + " : found in the report DB under column : "+ dt.Split(':')[0]);
+                                Report.Pass(eval + " : found in the report DB under column : "+ dt.Split(':')[0]);
                                 break;
                             }
 
                             if (cnt == ds.Tables[0].Rows.Count)
                             {
-                                test.Fail(eval + ": not found in the report DB under column : " + dt.Split(':')[0]);
+                                Report.Fail(eval + ": not found in the report DB under column : " + dt.Split(':')[0]);
                                 flag = false;
                             }
                         }
@@ -396,7 +396,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -421,18 +421,18 @@ namespace Sel.TestAuto
                 {
                     if (ds.Tables[0].Columns.Contains(col))
                     {
-                        test.Pass("Column Name : " + col + " found in Report DB");
+                        Report.Pass("Column Name : " + col + " found in Report DB");
                     }
                     else
                     {
-                        test.Fail("Column Name : " + col + " not found in Report DB");
+                        Report.Fail("Column Name : " + col + " not found in Report DB");
                         flag = false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -468,7 +468,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -496,7 +496,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -538,7 +538,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -571,12 +571,12 @@ namespace Sel.TestAuto
                     driver.SwitchTo().Frame(frameName);
                     if (driver.FindElements(By.XPath("*//embed[@type='application/pdf']")).Count > 0)
                     {
-                        test.Pass("PDF report opened successfully");
+                        Report.Pass("PDF report opened successfully");
                         flag = true;
                     }
                     else
                     {
-                        test.Fail("Failed to verify PDF Report");
+                        Report.Fail("Failed to verify PDF Report");
                         GenericMethods.CaptureScreenshot();
                         flag = false;
                     }
@@ -586,7 +586,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 GenericMethods.CaptureScreenshot();
                 throw new Exception(ex.Message);
             }
@@ -602,24 +602,24 @@ namespace Sel.TestAuto
 
                 if (GenericMethods.WaitForFileExists(downloadsFolder, downloadFileName + "*.xls*", 60))
                 {
-                    test.Pass("Excel report download successful");
+                    Report.Pass("Excel report download successful");
                     flag = true;
                 }
                 else if (GenericMethods.SaveFileFromDialog(downloadsFolder, downloadFileName + ".xlsx", 30))
                 {
                     GenericMethods.CaptureScreenshot();
-                    test.Pass("Excel report download successful");
+                    Report.Pass("Excel report download successful");
                     flag = true;
                 }
                 else
                 {
                     GenericMethods.CaptureScreenshot();
-                    test.Fail("Failed to verify Excel report download");
+                    Report.Fail("Failed to verify Excel report download");
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 GenericMethods.CaptureScreenshot();
                 throw new Exception(ex.Message);
             }

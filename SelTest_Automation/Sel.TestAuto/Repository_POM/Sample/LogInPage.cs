@@ -97,13 +97,13 @@ namespace Sel.TestAuto
                 }
                 else
                 {
-                    test.Fail("Failed to Launch Application or VPN is not connected");
+                    Report.Fail("Failed to Launch Application or VPN is not connected");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }
@@ -173,23 +173,23 @@ namespace Sel.TestAuto
                 string lblUserText = Pages.Home.Fn_GetSignInUser();
                 if (!lblUserText.ToLower().Contains(user.ToLower()))
                 {
-                    test.Fail("Failed to verify Signed in user in Landing Page");
-                    test.Fail("Login to application Failed for user : " + user);
+                    Report.Fail("Failed to verify Signed in user in Landing Page");
+                    Report.Fail("Login to application Failed for user : " + user);
                     GenericMethods.CaptureScreenshot();
                     flag = false;
                 }
                 else
                 {
-                    test.Pass("Login to application successful for user : " + user);
+                    Report.Pass("Login to application successful for user : " + user);
                     flag = true;
                 }
             }
             catch (Exception ex)
             {
-                if (Lbl_WrongEmailPwd.Exists()) test.Error("Wrong Email or Password entered");
-                if (Lbl_PwdExpired.Exists()) test.Error("Password is Expired for the user");
+                if (Lbl_WrongEmailPwd.Exists()) Report.Error("Wrong Email or Password entered");
+                if (Lbl_PwdExpired.Exists()) Report.Error("Password is Expired for the user");
 
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 GenericMethods.CaptureScreenshot();
                 throw new Exception(ex.Message);
             }
@@ -224,18 +224,18 @@ namespace Sel.TestAuto
 
                 if (Txt_UserName.Exists(10))
                 {
-                    test.Pass("Logout screen verified");
+                    Report.Pass("Logout screen verified");
                     flag = true;
                 }
                 else if (Lbl_LogOutScreen.Exists(10))
                 {
                     Lbl_LogOutScreen.Highlight();
-                    test.Pass("Logout screen verified");
+                    Report.Pass("Logout screen verified");
                     flag = true;
                 }
                 else
                 {
-                    test.Fail("Failed to verify logout screen");
+                    Report.Fail("Failed to verify logout screen");
 
                 }
 
@@ -243,18 +243,18 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
-                test.Fail("Failed to Logout from application");
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Fail("Failed to Logout from application");
                 GenericMethods.CaptureScreenshot();
                 return false;
             }
             if(flag)
             {
-                test.Pass("Logged Out of application successfully");
+                Report.Pass("Logged Out of application successfully");
             }
             else
             {   
-                test.Fail("Failed to Logout from application");
+                Report.Fail("Failed to Logout from application");
                 GenericMethods.CaptureScreenshot();
                 Assert.Fail("Failed to Logout from application");
             }

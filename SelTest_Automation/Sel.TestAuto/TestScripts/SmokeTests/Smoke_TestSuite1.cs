@@ -18,9 +18,13 @@ namespace Sel.TestAuto
     {
 
         [TestMethod]
-        public void Test001_Test_Mehtod()
+        public void Test001_Test_Method()
         {
             //Launch and Close Google
+            Report.Info("Test Method");
+
+            var resCovid19 = API.API_SendReceive("get", "https://data.covid19india.org/data.json", "", "json");
+            Thread.Sleep(5000);
         }
        
 
