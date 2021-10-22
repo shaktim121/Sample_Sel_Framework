@@ -23,7 +23,7 @@ namespace Sel.TestAuto
         //TEST-172
         public void TEST_172_WL_CAN_Reports_001000_Verify_Each_Report_Has_DSNPath()
         {
-            string sql = data.GetTestData("StoredProcedure");
+           /* string sql = data.GetTestData("StoredProcedure");
             //string reportNames = data.GetTestData("ReportNames");
             //string criteria = data.GetTestData("SearchCriteria");
             string DBServer = "dataSource".AppSettings();
@@ -76,7 +76,7 @@ namespace Sel.TestAuto
                 test.Error("Exception occured with message : " + ex.Message);
                 throw;
             }
-
+*/
         }
 
         //[TestMethod]
