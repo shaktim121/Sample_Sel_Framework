@@ -21,12 +21,12 @@ namespace Sel.TestAuto
         static string projectFolderPath = Environment.CurrentDirectory;
         public static void Init(string browser, string baseURL)
         {
-            AutomationCore.test.Info("Application : " + baseURL + " and Browser : " + browser);
+            AutomationCore.Report.Info("Application : " + baseURL + " and Browser : " + browser);
             switch (browser.ToLower())
             {
                 case "chrome":
                     Utilities.Kill_Process("chromedriver");
-                    String chromeVersion = new ChromeConfig().GetMatchingBrowserVersion();
+                    string chromeVersion = new ChromeConfig().GetMatchingBrowserVersion();
                     new DriverManager().SetUpDriver(new ChromeConfig(),chromeVersion);
                     GetDriver = new ChromeDriver();
                         
@@ -77,7 +77,7 @@ namespace Sel.TestAuto
             GetDriver.Manage().Cookies.DeleteAllCookies();
             GetDriver.Manage().Window.Maximize();
             GetDriver.Url = url;
-            AutomationCore.test.Info("Launched Application : " + url);
+            AutomationCore.Report.Info("Launched Application : " + url);
         }
         public static void Close()
         {

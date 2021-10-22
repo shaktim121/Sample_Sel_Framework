@@ -50,20 +50,20 @@ namespace Sel.TestAuto
                     if (driver.FindElements(By.XPath(".//*[contains(text(),'Notifications->" + Option + "')]")).Count > 0)
                     {
                         driver.FindElement(By.XPath(".//*[contains(text(),'Notifications->" + Option + "')]")).Highlight();
-                        test.Pass("Verified 'Notifications -> " + Option + "' on page");
-                        test.Pass("Navigated to " + Option + " Screen under Notifications");
+                        Report.Pass("Verified 'Notifications -> " + Option + "' on page");
+                        Report.Pass("Navigated to " + Option + " Screen under Notifications");
                         flag = true;
                     }
                     else if (driver.FindElement(By.XPath(".//a[text()='" + Option + "']")).Exists(30))
                     {
                         driver.FindElement(By.XPath(".//a[text()='" + Option + "']")).Highlight();
-                        test.Pass("Verified 'Notifications -> " + Option + "' on page");
-                        test.Pass("Navigated to " + Option + " Screen under Notifications");
+                        Report.Pass("Verified 'Notifications -> " + Option + "' on page");
+                        Report.Pass("Navigated to " + Option + " Screen under Notifications");
                         flag = true;
                     }
                     else
                     {
-                        test.Fail("Failed to verify 'Notifications -> " + Option + "' on page");
+                        Report.Fail("Failed to verify 'Notifications -> " + Option + "' on page");
                         GenericMethods.CaptureScreenshot();
                         flag = false;
                     }
@@ -71,7 +71,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
+                Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 //EndTest();
                 throw new Exception(ex.Message);
             }

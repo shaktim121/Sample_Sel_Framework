@@ -36,7 +36,7 @@ namespace Sel.TestAuto
 
         public static ExtentReports extent;
         public static ExtentV3HtmlReporter htmlReporter;
-        public static ExtentTest test;
+        public static ExtentTest Report;
 
         public static DataSet data;
         public TestContext TestContext { get; set; }
@@ -69,7 +69,7 @@ namespace Sel.TestAuto
         public void StartUpTest()// This method fire at the start of the Test
         {
             testName = TestContext.TestName;
-            test = extent.CreateTest(testName);
+            Report = extent.CreateTest(testName);
 
             string baseURL = "url".AppSettings();
             string browser = "browser".AppSettings();
@@ -89,7 +89,7 @@ namespace Sel.TestAuto
             }
             catch (Exception ex)
             {
-                test.Error("Failed to Launch/Login to Application or Browser with Exception: " + ex.StackTrace + " and Message: " + ex.Message);
+                Report.Error("Failed to Launch/Login to Application or Browser with Exception: " + ex.StackTrace + " and Message: " + ex.Message);
                 GenericMethods.CaptureScreenshot();
                 throw new Exception("Exception: " + ex.StackTrace + " and Message: " + ex.Message);
             }
@@ -105,7 +105,7 @@ namespace Sel.TestAuto
             }
             catch(Exception ex)
             {
-                test.Fail("Continuing without Logout");
+                Report.Fail("Continuing without Logout");
             }
             finally
             {
