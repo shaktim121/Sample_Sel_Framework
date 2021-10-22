@@ -22,7 +22,12 @@ namespace Sel.TestAuto
         {
             //Launch and Close Google
         }
-       
+
+        [TestMethod]
+        public void Test001_Test_Mehtod1()
+        {
+            //Launch and Close Google
+        }
 
     }
 }
