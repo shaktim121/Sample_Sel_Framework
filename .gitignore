@@ -99,3 +99,4 @@ BouncyCastle.Crypto.dll
 /SelTest_Automation/packages
 /SelTest_Automation/Sel.TestAuto/bin/Debug
 /SelTest_Automation/Sel.TestAuto/obj
+/SelTest_Automation/Sel.TestAuto/Core/Compression

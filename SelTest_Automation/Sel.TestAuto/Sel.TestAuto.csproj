@@ -544,9 +544,11 @@
     <Compile Include="Repository_POM\Sample\NotificationsPage.cs" />
     <Compile Include="Repository_POM\Pages.cs" />
     <Compile Include="TestScripts\SmokeTests\Scenario_2.cs" />
+    <Compile Include="Repository_POM\YouTube.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite1.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite_Ref.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestScripts\SmokeTests\TestScenario1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
