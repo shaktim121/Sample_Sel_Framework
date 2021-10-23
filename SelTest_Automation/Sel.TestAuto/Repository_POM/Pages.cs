@@ -29,6 +29,13 @@ namespace Sel.TestAuto
             get { return GetPages<NotificationsPage>(); }
         }
 
+        //LogIn Page
+        public static NYSE Nyse
+        {
+            get { return GetPages<NYSE>(); }
+        }
+
+
         public static YouTube youTube
         {
             get { return GetPages<YouTube>(); }

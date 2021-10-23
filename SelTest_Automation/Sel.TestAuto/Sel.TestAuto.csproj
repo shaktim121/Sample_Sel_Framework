@@ -538,10 +538,12 @@
     <Compile Include="Framework.Core\GlobalDB.cs" />
     <Compile Include="Framework.Core\MobileUtilities.cs" />
     <Compile Include="Framework.Core\Utilities.cs" />
+    <Compile Include="Repository_POM\NYSE.cs" />
     <Compile Include="Repository_POM\Sample\LandingPage.cs" />
     <Compile Include="Repository_POM\Sample\LogInPage.cs" />
     <Compile Include="Repository_POM\Sample\NotificationsPage.cs" />
     <Compile Include="Repository_POM\Pages.cs" />
+    <Compile Include="TestScripts\SmokeTests\Scenario_2.cs" />
     <Compile Include="Repository_POM\YouTube.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite1.cs" />
     <Compile Include="TestScripts\SmokeTests\Smoke_TestSuite_Ref.cs" />

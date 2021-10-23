@@ -19,7 +19,7 @@ namespace Sel.TestAuto
         public string xmlDataFile = projectDirectory + "\\TestScripts\\PayrollTests\\ProcessGroupDetails.xml";
         
 
-        [TestMethod]
+        //[TestMethod]
         //TEST-172
         public void TEST_172_WL_CAN_Reports_001000_Verify_Each_Report_Has_DSNPath()
         {

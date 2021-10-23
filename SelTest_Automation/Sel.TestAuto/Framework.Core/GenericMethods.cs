@@ -197,25 +197,25 @@ namespace Sel.TestAuto
             return flag;
         }
 
-        //Exists method - Overload with timeout
-        public static bool Exists(this IWebElement element, double timeoutSeconds)
-        {
-            Boolean flag = false;
-            try
-            {
-                WebDriverWait wait = new WebDriverWait(Browsers.GetDriver, TimeSpan.FromSeconds(timeoutSeconds));
-                if (wait.Until(driver => element.Displayed && element.Size.Height > 0))
-                {
-                    flag = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-                //throw new Exception(ex.Message + " " + ex.StackTrace);
-            }
-            return flag;
-        }
+        ////Exists method - Overload with timeout
+        //public static bool Exists(this IWebElement element, double timeoutSeconds)
+        //{
+        //    Boolean flag = false;
+        //    try
+        //    {
+        //        WebDriverWait wait = new WebDriverWait(Browsers.GetDriver, TimeSpan.FromSeconds(timeoutSeconds));
+        //        if (wait.Until(driver => element.Displayed && element.Size.Height > 0))
+        //        {
+        //            flag = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //        //throw new Exception(ex.Message + " " + ex.StackTrace);
+        //    }
+        //    return flag;
+        //}
 
         //NotExists method - with timeout
         public static bool NotExists(this IWebElement element, int timeoutSeconds)
