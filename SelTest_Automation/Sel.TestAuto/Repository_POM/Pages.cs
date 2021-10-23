@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using OpenQA.Selenium.Support.PageObjects;
 
 namespace Sel.TestAuto
 {
@@ -38,6 +33,12 @@ namespace Sel.TestAuto
         public static NYSE Nyse
         {
             get { return GetPages<NYSE>(); }
+        }
+
+
+        public static YouTube youTube
+        {
+            get { return GetPages<YouTube>(); }
         }
 
     }
