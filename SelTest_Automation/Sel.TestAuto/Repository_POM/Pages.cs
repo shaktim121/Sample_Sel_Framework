@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using OpenQA.Selenium.Support.PageObjects;
 
 namespace Sel.TestAuto
 {
@@ -33,6 +28,11 @@ namespace Sel.TestAuto
         {
             get { return GetPages<NotificationsPage>(); }
         }
-        
+
+        public static YouTube youTube
+        {
+            get { return GetPages<YouTube>(); }
+        }
+
     }
 }
