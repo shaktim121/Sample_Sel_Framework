@@ -13,11 +13,11 @@ using Bogus.Extensions.Canada;
 
 namespace Sel.TestAuto
 {
-    [TestClass]
+    //[TestClass]
     public class Smoke_TestSuite1 : AutomationCore
     {
 
-        [TestMethod]
+        //[TestMethod]
         public void Test001_Test_Method()
         {
             //Launch and Close Google
