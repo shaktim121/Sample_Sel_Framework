@@ -41,33 +41,44 @@ namespace Sel.TestAuto
             webDriver = Browsers.GetDriver;
         }
 
-        public void searchYoutube(String searchKey)
+        public bool searchYoutube(String searchKey)
         {
+            bool flag = false;
             Txt_Search.SendKeys(searchKey);
             Btn_Search.Click();
             Lnk_Search.Click();
+            flag = true;
+            return flag;
         }
 
-        public void clickOnChannelVideos()
+        public bool clickOnChannelVideos()
         {
+            bool flag = false;
             Lnk_Videos.Click();
+            flag = true;
+            return flag;
         }
 
-        public void sortByDateAddedNew()
+        public bool sortByDateAddedNew()
         {
+            bool flag = false;
             Btn_Sort_Videos.Click();
-            Actions actions = new Actions(Browsers.GetDriver);
-            actions.MoveToElement(Btn_Date_Added_New).Click().Build().Perform();
+           /* Actions actions = new Actions(Browsers.GetDriver);
+            actions.MoveToElement(Btn_Date_Added_New).Click().Build().Perform();*/
             Btn_Sort_Videos.Click();
+            flag = true;
+
+            return flag;
         }
 
         public IList<IWebElement> get_AllVideosWithin1Year()
         {
+            
             IList<IWebElement> allVideosNeeded = new List<IWebElement>();
             foreach(IWebElement videoLink in  Link_All_Videos){
                 IWebElement videoUploaded = videoLink.FindElement(By.XPath("//span[2]"));
                 IWebElement videoViews = videoLink.FindElement(By.XPath("//span[1]"));
-                string timeAddedElementText = videoUploaded.Text;
+                string timeAddedElementText = videoUploaded.GetAttribute("innerHTML");
                 if (timeAddedElementText.Equals("2 years ago"))
                 {
                     break;
@@ -77,7 +88,7 @@ namespace Sel.TestAuto
                     Actions actions = new Actions(Browsers.GetDriver);
                     actions.MoveToElement(videoLink).Build().Perform();
                     allVideosNeeded.Add(videoUploaded);
-                    Console.WriteLine(videoViews.Text+" videoViews"+timeAddedElementText);
+                    Console.WriteLine(videoViews.GetAttribute("innerHTML")+" videoViews"+timeAddedElementText);
                 }
             }
             return allVideosNeeded;
