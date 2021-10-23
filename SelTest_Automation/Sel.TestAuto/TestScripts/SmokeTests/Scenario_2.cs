@@ -24,6 +24,11 @@ namespace Sel.TestAuto
             string url = "urlScenario2".AppSettings();
             Browsers.Init(browser, url);
 
+            if(Browsers.GetDriver.FindElements(By.XPath(".//button[text()='Accept All Cookies']")).Count > 0)
+            {
+                Browsers.GetDriver.FindElements(By.XPath(".//button[text()='Accept All Cookies']"))[0].Click();
+            }
+            
             if(Pages.Nyse.Fn_SearchInNYSE("EPAM SYS INC"))
             {
                 Report.Pass("Navigate to EPAM Stock details site - Pass");
@@ -43,6 +48,10 @@ namespace Sel.TestAuto
                 Report.Fail("Historic price search - Fail");
                 Assert.Fail();
             }
+
+            string jsonOutput = Pages.Nyse.Fn_GetDateAndClosePrice("2021-09-01", "2021-09-30");
+
+            var replySc2 = API.API_SendReceive("post", "https://testathon-service.herokuapp.com/api/v2/stocks/data", jsonOutput, "json");
         }
 
 
