@@ -26,8 +26,8 @@ namespace Sel.TestAuto
             {
                 case "chrome":
                     Utilities.Kill_Process("chromedriver");
-                    string chromeVersion = new ChromeConfig().GetMatchingBrowserVersion();
-                    new DriverManager().SetUpDriver(new ChromeConfig(),chromeVersion);
+                    //string chromeVersion = new ChromeConfig().GetMatchingBrowserVersion();
+                    //new DriverManager().SetUpDriver(new ChromeConfig(),chromeVersion);
                     GetDriver = new ChromeDriver();
                         
                     break;

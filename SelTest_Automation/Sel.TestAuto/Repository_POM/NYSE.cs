@@ -92,28 +92,31 @@ namespace Sel.TestAuto
                 IWebElement element = driver.FindElement(By.XPath(".//span[text()='HISTORIC PRICES']"));
                 ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
 
-                if (txt_FromDate_Hist.Exists(20))
+                if(tbl_HistSearch.Exists(30))
                 {
-                    //txt_FromDate_Hist.SetText(fromDate);
-                    txt_FromDate_Hist.Click();
-                    txt_FromDate_Hist.SendKeys(Keys.Control + "a");
-                    txt_FromDate_Hist.SendKeys(Keys.Delete);
-                    txt_FromDate_Hist.SendKeys(fromDate);
-                }
-                Thread.Sleep(2000);
-                if (txt_ToDate_Hist.Exists(20))
-                {
-                    txt_ToDate_Hist.Click();
-                    txt_ToDate_Hist.SendKeys(Keys.Control + "a");
-                    txt_ToDate_Hist.SendKeys(Keys.Delete);
-                    txt_ToDate_Hist.SendKeys(toDate);
-                }
+                    if (txt_FromDate_Hist.Exists(20))
+                    {
+                        //txt_FromDate_Hist.SetText(fromDate);
+                        txt_FromDate_Hist.Click();
+                        txt_FromDate_Hist.SendKeys(Keys.Control + "a");
+                        txt_FromDate_Hist.SendKeys(Keys.Delete);
+                        txt_FromDate_Hist.SendKeys(fromDate);
+                    }
+                    Thread.Sleep(2000);
+                    if (txt_ToDate_Hist.Exists(20))
+                    {
+                        txt_ToDate_Hist.Click();
+                        txt_ToDate_Hist.SendKeys(Keys.Control + "a");
+                        txt_ToDate_Hist.SendKeys(Keys.Delete);
+                        txt_ToDate_Hist.SendKeys(toDate);
+                    }
 
-                if(btn_Go.Exists(20))
-                {
-                    btn_Go.Click();
+                    if (btn_Go.Exists(20))
+                    {
+                        btn_Go.Click();
+                    }
                 }
 
                 if(tbl_HistSearch.Exists(30))
@@ -129,17 +132,46 @@ namespace Sel.TestAuto
             return flag;
         }
 
-        public void Fn_GetDateAndClosePrice()
+        public static string MyDictionaryToJson(Dictionary<string, string> dict)
         {
+            var entries = dict.Select(d =>
+                string.Format("\"date\": \"{0}\",\"value\": {1}\"}\"", d.Key, string.Join(",", d.Value)));
+
+            //string outtext = "{" + string.Join(",", entries) + "}";
+            return "{" + string.Join(",", entries) + "}";
+        }
+
+        public string Fn_GetDateAndClosePrice(string fromDate, string toDate)
+        {
+            string output = string.Empty;
+            Dictionary<string, string> dictDatePrice = new Dictionary<string, string>();
             try
             {
+                var dateList = driver.FindElements(By.XPath(".//div[@class='flex_td Time']//div[@class='data-table-cell']"));
 
+                var closePriceList = driver.FindElements(By.XPath(".//div[@class='flex_td Close']//div[@class='data-table-cell-price-align']"));
+
+                if(dateList.Count == closePriceList.Count)
+                {
+                    for(int i=0;i<dateList.Count;i++)
+                    {
+                        dictDatePrice.Add(dateList[i].Text, closePriceList[i].Text);
+                    }
+                }
+
+                if(dictDatePrice!=null)
+                {
+                    string json = MyDictionaryToJson(dictDatePrice);
+                    json = "{\"period\": {\"startDate\": \""+fromDate+ "\",\"endDate\": \"" + toDate + "\"},\"stockData\": [" + json + "]";
+                    output = json;
+                }
             }
             catch (Exception ex)
             {
                 Report.Error(ex.Message.ToString() + "Stack Trace:" + ex.StackTrace.ToString());
                 throw new Exception(ex.Message);
             }
+            return output;
         }
 
     }
