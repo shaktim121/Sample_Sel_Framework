@@ -82,7 +82,7 @@ namespace Sel.TestAuto
                 //data = testName.LoadTestData();
 
                 //Initiate App Launch
-                Browsers.Init(browser, baseURL);
+                //Browsers.Init(browser, baseURL);
 
                 //LogIn to Application
                 //Pages.LogIn.Fn_LogInToApplication(user, pwd);
