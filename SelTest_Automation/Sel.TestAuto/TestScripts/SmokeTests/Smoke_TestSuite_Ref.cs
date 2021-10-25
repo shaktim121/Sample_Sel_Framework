@@ -13,7 +13,7 @@ using Bogus.Extensions.Canada;
 
 namespace Sel.TestAuto
 {
-    [TestClass]
+    //[TestClass]
     public class Smoke_TestSuite_Ref : AutomationCore
     {
         public string xmlDataFile = projectDirectory + "\\TestScripts\\PayrollTests\\ProcessGroupDetails.xml";

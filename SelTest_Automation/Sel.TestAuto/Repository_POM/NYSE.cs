@@ -135,10 +135,10 @@ namespace Sel.TestAuto
         public static string MyDictionaryToJson(Dictionary<string, string> dict)
         {
             var entries = dict.Select(d =>
-                string.Format("\"date\": \"{0}\",\"value\": {1}\"}\"", d.Key, string.Join(",", d.Value)));
+                string.Format("\"date\":\"{0}\",\"value\":{1}", d.Key, string.Join(",", d.Value)));
 
             //string outtext = "{" + string.Join(",", entries) + "}";
-            return "{" + string.Join(",", entries) + "}";
+            return "{" + string.Join("},{", entries) + "}";
         }
 
         public string Fn_GetDateAndClosePrice(string fromDate, string toDate)
@@ -164,6 +164,7 @@ namespace Sel.TestAuto
                     string json = MyDictionaryToJson(dictDatePrice);
                     json = "{\"period\": {\"startDate\": \""+fromDate+ "\",\"endDate\": \"" + toDate + "\"},\"stockData\": [" + json + "]";
                     output = json;
+                    output = output + ",\"highestClosingPrice\":100}";
                 }
             }
             catch (Exception ex)

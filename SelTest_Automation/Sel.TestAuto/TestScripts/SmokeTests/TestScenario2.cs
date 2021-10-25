@@ -14,7 +14,7 @@ using Bogus.Extensions.Canada;
 namespace Sel.TestAuto
 {
     [TestClass]
-    public class Scenario_2 : AutomationCore
+    public class TestScenario2 : AutomationCore
     {
 
         [TestMethod]
@@ -50,8 +50,21 @@ namespace Sel.TestAuto
             }
 
             string jsonOutput = Pages.Nyse.Fn_GetDateAndClosePrice("2021-09-01", "2021-09-30");
+            Report.Info("Required Json Data as below");
+            Report.Info(jsonOutput);
 
-            var replySc2 = API.API_SendReceive("post", "https://testathon-service.herokuapp.com/api/v2/stocks/data", jsonOutput, "json");
+            string endPoint = "https://testathon-service.herokuapp.com/api/v2/stocks/data";
+            var replySc2 = API.API_SendReceive("post", endPoint, jsonOutput, "json");
+
+            if(API.StatusCode().ToString().Equals("200"))
+            {
+                Report.Pass("Post to endpoint is successful : Status Code 200");
+            }
+            else
+            {
+                Report.Fail("Failed to post to end point : Status Code " + API.StatusCode().ToString());
+                Assert.Fail();
+            }
         }
 
 
