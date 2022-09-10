@@ -1,0 +1,23 @@
+{
+	"period":
+	{
+		"startDate": "2021-09-01",
+		"endDate": "2021-09-30"
+	},
+	"stockData":
+	[
+		{
+			"date":"2021-09-30",
+			"value": 570.48
+		},
+		{
+			"date":"09/29/2021",
+			"value": 570.25
+		},
+		{
+			"date":"09/28/2021",
+			"value": 568.55
+		}
+	],
+	"highestClosingPrice":100
+}
